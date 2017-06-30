@@ -70,8 +70,6 @@ public class MemberService {
 	public String login(MemberBean member) {
 		String login = "";
 		
-		if
-		
 		/*if(!member.getId().equals(loginId)){
 			result = "ID is not exeist";
 		}
@@ -83,8 +81,8 @@ public class MemberService {
 				result = toString();
 			}
 		}*/
-		System.err.println();
-		return result;
+	
+		return login;
 	}
 	
 }
