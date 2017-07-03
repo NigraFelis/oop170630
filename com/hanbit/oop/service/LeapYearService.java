@@ -1,51 +1,40 @@
 package com.hanbit.oop.service;
+import com.hanbit.oop.domain.LeapYearBean;
+ 
 public class LeapYearService {
-      private int year;
-      private String result;
-      
-      public void setYear(int year){
-            this.year = year;
-      }
-      public int getYear(){
-            return year;
-      }
-      
-      public void setLeapYear() {
-            if(year%4==0){
-                  if(year%100==0){
-                        result = "nomal year";  
-                        if(year%400==0){
-                        result = "leap year";
-                        }
-                  }                 
-            }
-            else {
-                  result = "nomal year";
-            }     
-      }
-      public String getLeapYear(){
-            return result;
-      }
+	public String excuteLeapYear(LeapYearBean year) {
+		String result = "";  
+		if(year.getYear()%4==0){
+			result = "leap year";
+	      if(year.getYear()%100==0){
+	        result = "nomal year";  
+	        if(year.getYear()%400==0){
+	        result = "leap year";
+	        }
+	      }                 
+	    }
+	    else {
+	          result = "nomal year";
+	    }     
+		return result;
+	}
 }
-
-/*package com.hanbit.oop.service;
-
+/*
 public class LeapYearService {
-	public String ExLeapYear(int y) {
-		
-		String result = "";
-		
-			if(y%4==0){
-				if(y%100==0){
-					result = "nomal year";	
-					if(y%400==0){
-					result = "leap year";
-					}
-				}			
-			}
-			else {
-				result = "nomal year";
-			}
-		return result;	
+	public String excuteLeapYear(int year) {
+		String result = "";  
+		if(year.getYear()%4==0){
+			result = "leap year";
+	      if(year.getYear()%100==0){
+	        result = "nomal year";  
+	        if(year.getYear()%400==0){
+	        result = "leap year";
+	        }
+	      }                 
+	    }
+	    else {
+	          result = "nomal year";
+	    }     
+		return result;
 	}
 }*/

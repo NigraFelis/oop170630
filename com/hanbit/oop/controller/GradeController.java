@@ -2,6 +2,8 @@ package com.hanbit.oop.controller;
 import java.util.Scanner;
 
 import com.hanbit.oop.domain.GradeBean;
+import com.hanbit.oop.domain.LeapYearBean;
+import com.hanbit.oop.domain.TaxcalcBean;
 import com.hanbit.oop.service.BMIService;
 import com.hanbit.oop.service.CalcService;
 import com.hanbit.oop.service.GradeService;
@@ -15,57 +17,63 @@ public class GradeController {
             
         Scanner s = new Scanner(System.in);
         CalcService s2 = new CalcService();
-        LeapYearService s3 = new LeapYearService();
-        TaxCalcService s4 = new TaxCalcService();
+        LeapYearService leapYearService = new LeapYearService();
+        LeapYearBean leapYearBean = new LeapYearBean();
+        TaxCalcService taxCalc = new TaxCalcService();
+        TaxcalcBean taxcalcBean = new TaxcalcBean();
         SecondCalcService s6 = new SecondCalcService();
-        GradeService g = new GradeService();
-        GradeBean gbean = new GradeBean();
         BMIService bmi = new BMIService();
+        GradeService g = new GradeService();
+        GradeBean gradebean = new GradeBean();
+        
         
         while(true){
-              System.out.print("insert number\n");
-              String menu = s.next();
-        
-              switch(menu){
+            
+              switch (JOptionPane.showInputDialog("0.stop 1.grade 2.LeapYear 3.Tax")) {
                     case "0":
                           System.out.print("end");
                     return;
               
-                    case "1":
-                          System.out.print("weight : ");
-                          double weight = s.nextDouble();
-                          bmi.setWeight(weight);
-                          System.out.print("height : ");
-                          double height = s.nextDouble();
-                          bmi.setHeight(height);
-                          bmi.setBMI();
-                          bmi.setResult();
-                          System.out.println("result is " + bmi.getResult());
-                          break;
+                    case "1" :
+        				gradebean.setName(JOptionPane.showInputDialog("name?"));
+        				gradebean.setMajor(JOptionPane.showInputDialog("major?"));
+        				gradebean.setKor(Integer.parseInt(JOptionPane.showInputDialog("kor?")));
+        				gradebean.setEng(Integer.parseInt(JOptionPane.showInputDialog("eng?")));
+        				gradebean.setMath(Integer.parseInt(JOptionPane.showInputDialog("math?")));
+        				
+        				JOptionPane.showMessageDialog(null, g.getGrade(g.getAvg(g.getTotal(gradebean))));
+        				
+        				break;
               
                     case "2":
-                          System.out.print("Insert year\n");
-                          int year = s.nextInt();
-                          s3.setYear(year);
-                          s3.setLeapYear();
-                          System.out.println(s3.getLeapYear());
-                          break;
+                    	leapYearBean.setYear(Integer.parseInt(JOptionPane.showInputDialog("insert Year\n"))); 
+                    	
+                    	JOptionPane.showMessageDialog(null, leapYearService.excuteLeapYear(leapYearBean));
+                    	/*JOptionPane.showMessageDialog(null, leapYearService.excuteLeapYear(leapYearBean.getYear()));*/
+                    	
+                    	break;
                     
                     case "3":
-                          System.out.println("이름 입력");
-                          String name = s.next();
-                          s4.setName(name);
-                          System.out.println("연봉 입력");
-                          int salar = s.nextInt();
-                          s4.setSalar(salar);
-                          s4.setTaxRatio();
-                          s4.setTaxCalc();
-                          System.out.print("************************************************"+"\n"
-                                                  +"이름"+"\t"+"연봉"+"\t"+"세율"+"\t"+"납부할 세금"+"\n"
-                                                  +name +"\t"+salar+"\t"+s4.getTaxRatio()+"\t"+s4.getTaxCalc()+"\n"
-                                                  +"************************************************"+"\n");
-                          
-                          break;
+                    	
+                    	taxcalcBean.setName(JOptionPane.showInputDialog("Insert name")); 
+                    	taxcalcBean.setSalar(Integer.parseInt((JOptionPane.showInputDialog("Insert salar"))));
+                    	
+                    	/*JOptionPane.showMessageDialog(null, taxcalcBean.getName()+"\t"+taxcalcBean.getSalar()+"\t"+taxCalc.exTaxRatio(taxcalcBean)+"\t"+taxCalc.exTaxCalc(taxcalcBean));*/
+                    	JOptionPane.showMessageDialog(null, taxCalc.toString(taxcalcBean));
+                    	/*System.out.println("이름 입력");
+	                    String name = s.next();
+	                      taxCalc.setName(name);
+	                      System.out.println("연봉 입력");
+	                      int salar = s.nextInt();
+	                      taxCalc.setSalar(salar);
+	                      taxCalc.setTaxRatio();
+	                      taxCalc.setTaxCalc();
+	                      System.out.print("************************************************"+"\n"
+	                                              +"이름"+"\t"+"연봉"+"\t"+"세율"+"\t"+"납부할 세금"+"\n"
+	                                              +name +"\t"+salar+"\t"+taxCalc.getTaxRatio()+"\t"+taxCalc.getTaxCalc()+"\n"
+	                                              +"************************************************"+"\n");*/
+	                      
+	                      break;
                                                                
                     case "5":
                           System.out.println("초를 시간과 분으로 바꾸어 주는 프로그램입니다.\n초를입력해주세요.");
@@ -84,16 +92,7 @@ public class GradeController {
                           String sumResult = s2.calcPlus(a, b);
                           System.out.println(sumResult);
                           break;
-                    case "7":
-                    	gbean.setName(JOptionPane.showInputDialog("Name"));
-                      	gbean.setMajor(JOptionPane.showInputDialog("insert major"));
-                      	gbean.setKor(Integer.parseInt(JOptionPane.showInputDialog("insert Kor")));
-                      	gbean.setEng(Integer.parseInt(JOptionPane.showInputDialog("insert Eng")));
-                      	gbean.setMath(Integer.parseInt(JOptionPane.showInputDialog("insert Math")));
-                  		g.getTotal()
-                      	
-                          
-                      	break;
+                    
                         
                   }
             }

@@ -1,47 +1,46 @@
 package com.hanbit.oop.service;
 
 import com.hanbit.oop.domain.GradeBean;
-import com.hanbit.oop.domain.MemberBean;
 
 public class GradeService {
    //field
-	GradeBean g;
-	public GradeService(){
-		g = new GradeBean();
-	}
-	
-   public int getTotal(GradeBean g) {
-      return g.getKor()+g.getEng()+g.getMath();
+
+	public int getTotal(GradeBean grade) {
+      return grade.getKor()+grade.getEng()+grade.getMath();
    }
 
    public int getAvg(int total) {
 	    return (total/3);
-/*	   return (g.getKor()+g.getEng()+g.getMath());*/
+/*	   return ((g.getKor()+g.getEng()+g.getMath())/3);*/
    }
    
    public String getGrade(int avg) {
       //method area
 	  String grade = "";
 	      switch (avg/10) {
-	      case 9 :
+	     
 	      case 10 :
 	         grade = "A";
+	         break;
+	      case 9 :
+	    	  grade = "A";
+	    	  break;
 	      case 8 :
 	         grade = "B";
+	         break;
 	      case 7 :
 	         grade = "C";
+	         break;
 	      case 6 :
 	         grade = "D";
-	      case 5 :
-	         grade = "E";
+	         break;
+	      default :
+	         grade = "F";
+	         break;
 	      }
+	      
 	      return grade;
+
    }
-   
-   public String getGrade() {
-      return grade;
-   }
-  
-  
 
 }
